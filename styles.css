@@ -341,20 +341,21 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   background: #E2E8F0;
-  padding: 4px;
+  padding: 3px;
   border-radius: var(--radius-pill);
   border: 1px solid #CBD5E1;
+  gap: 2px;
 }
 
 .lang-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 6px 14px;
+  gap: 4px;
+  padding: 5px 10px;
   border-radius: var(--radius-pill);
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: #475569;
   cursor: pointer;
@@ -362,6 +363,7 @@ button, input, select, textarea {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
   border: none;
+  white-space: nowrap;
 }
 
 .lang-btn:hover {
@@ -630,50 +632,39 @@ button, input, select, textarea {
 
 .fleet-img-wrap {
   position: relative;
-  height: 280px;
-  background: #F1F5F9;
+  height: 240px;
+  background: radial-gradient(circle at center, #FFFFFF 45%, #E2E8F0 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px 24px;
   overflow: hidden;
 }
 
 .fleet-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.fleet-img-tuktuk {
-  background: radial-gradient(circle at center, #FFFFFF 40%, #E2E8F0 100%);
-  padding: 12px 18px 4px;
-}
-
-.fleet-img-tuktuk img {
+  width: auto;
+  max-width: 82%;
+  height: auto;
+  max-height: 85%;
   object-fit: contain;
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
-  transform: translateY(4px);
-  transition: transform 0.3s ease;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.14));
+  transform: translateY(2px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
 }
 
-.fleet-card:hover .fleet-img-tuktuk img {
-  transform: translateY(0) scale(1.04);
+.fleet-tuktuk-isolated {
+  max-width: 70%;
+  max-height: 85%;
 }
 
-.fleet-img-van {
-  background: radial-gradient(circle at center, #FFFFFF 40%, #E2E8F0 100%);
-  padding: 10px 16px 2px;
+.fleet-van-isolated {
+  max-width: 85%;
+  max-height: 80%;
 }
 
-.fleet-img-van img {
-  object-fit: contain;
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
-  transform: translateY(4px);
-  transition: transform 0.3s ease;
-}
-
-.fleet-card:hover .fleet-img-van img {
-  transform: translateY(0) scale(1.04);
+.fleet-card:hover .fleet-img-wrap img {
+  transform: translateY(-4px) scale(1.05);
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.18));
 }
 
 .fleet-badge {
@@ -1597,6 +1588,21 @@ textarea.form-control {
     font-size: 0.88rem;
   }
   
+  .fleet-img-wrap {
+    height: 200px;
+    padding: 14px 18px;
+  }
+
+  .fleet-tuktuk-isolated {
+    max-width: 70%;
+    max-height: 85%;
+  }
+
+  .fleet-van-isolated {
+    max-width: 85%;
+    max-height: 80%;
+  }
+
   .mobile-bottom-bar {
     display: flex;
   }

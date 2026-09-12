@@ -1,16 +1,16 @@
 /**
- * Kalutara Tuk-Tuk & Van Tours — Main JavaScript
- * Handles Bilingual Translations (EN/RU), Tour Filters, FAQ Accordion,
- * Mobile Navigation, and WhatsApp Booking Integration.
+ * Ceylon Experience — Main JavaScript
+ * Handles 4-Language Translations (EN / RU / FR / DE), Tour Filters, FAQ Accordion,
+ * Mobile Navigation, and Multilingual WhatsApp Booking Integration.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // Global State
-  let currentLang = localStorage.getItem('kalutara_lang') || 'en';
+  let currentLang = localStorage.getItem('ceylon_lang') || localStorage.getItem('kalutara_lang') || 'en';
   let translations = {};
 
   // Config: Driver Phone / WhatsApp Number
-  const WHATSAPP_NUMBER = '94771234567'; // Replace with driver's actual number
+  const WHATSAPP_NUMBER = '94771234567'; // Driver WhatsApp number
   const CONTACT_EMAIL = 'kalutaratours@gmail.com';
 
   // DOM Elements
@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const inquiryForm = document.getElementById('inquiryForm');
   const siteHeader = document.getElementById('siteHeader');
 
-  // Load Translations (supports offline file:// protocol + fetch fallback)
+  // Load Translations (supports pre-bundled window.LOCAL_TRANSLATIONS + fetch fallback)
   async function loadTranslations(lang) {
-    // 1. Check pre-bundled window.LOCAL_TRANSLATIONS first (works 100% locally and on file://)
+    // 1. Check pre-bundled window.LOCAL_TRANSLATIONS first (instant on local file://, mobile & web)
     if (window.LOCAL_TRANSLATIONS && window.LOCAL_TRANSLATIONS[lang]) {
       translations[lang] = window.LOCAL_TRANSLATIONS[lang];
       applyTranslations(lang);
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
         }
       }
-      if (val) {
+      if (val !== null && val !== undefined) {
         el.textContent = val;
       }
     });
@@ -86,14 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
         }
       }
-      if (val) {
+      if (val !== null && val !== undefined) {
         el.placeholder = val;
       }
     });
 
     // Update html lang attribute
     document.documentElement.lang = lang;
-    localStorage.setItem('kalutara_lang', lang);
+    localStorage.setItem('ceylon_lang', lang);
     currentLang = lang;
   }
 
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const filter = btn.dataset.filter;
 
       tourCards.forEach(card => {
-        const category = card.dataset.category;
+        const category = card.dataset.category || '';
         if (filter === 'all' || category.includes(filter)) {
           card.style.display = 'flex';
         } else {
@@ -160,60 +160,89 @@ document.addEventListener('DOMContentLoaded', () => {
   // FAQ Accordion
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-      // Close all others
-      faqItems.forEach(i => i.classList.remove('active'));
-      // Toggle current
-      if (!isActive) {
-        item.classList.add('active');
-      }
-    });
+    if (question) {
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        // Close all others
+        faqItems.forEach(i => i.classList.remove('active'));
+        // Toggle current
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    }
   });
 
-  // Interactive Quick Tour Booking Links (passes tour title to WhatsApp)
+  // Interactive Quick Tour Booking Links (passes tour title to WhatsApp in 4 languages)
   document.querySelectorAll('.book-tour-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const tourTitle = btn.dataset.tour || 'Sri Lanka Tour';
-      const isRu = currentLang === 'ru';
-      const greeting = isRu 
-        ? `Здравствуйте! Хочу узнать подробнее и заказать экскурсию: "${tourTitle}".` 
-        : `Hello! I would like to inquire about and book the "${tourTitle}" from Kalutara.`;
+      
+      let greeting = '';
+      if (currentLang === 'ru') {
+        greeting = `Здравствуйте! Хочу узнать подробнее и заказать экскурсию: "${tourTitle}".`;
+      } else if (currentLang === 'fr') {
+        greeting = `Bonjour ! Je souhaite me renseigner et réserver l'excursion : "${tourTitle}".`;
+      } else if (currentLang === 'de') {
+        greeting = `Hallo! Ich möchte mich erkundigen und die folgende Tour buchen: "${tourTitle}".`;
+      } else {
+        greeting = `Hello! I would like to inquire about and book the "${tourTitle}" tour in Sri Lanka.`;
+      }
       
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(greeting)}`;
       window.open(url, '_blank');
     });
   });
 
-  // Main Inquiry Form Submission via WhatsApp
+  // Main Inquiry Form Submission via WhatsApp in 4 languages
   if (inquiryForm) {
     inquiryForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
       const name = document.getElementById('formName').value.trim();
       const hotel = document.getElementById('formHotel').value.trim();
-      const tour = document.getElementById('formTour').value;
-      const vehicle = document.getElementById('formVehicle').value;
+      const tourSelect = document.getElementById('formTour');
+      const tour = tourSelect.options[tourSelect.selectedIndex].text || tourSelect.value;
+      const vehicleSelect = document.getElementById('formVehicle');
+      const vehicle = vehicleSelect.options[vehicleSelect.selectedIndex].text || vehicleSelect.value;
       const dates = document.getElementById('formDates').value.trim();
       const travelers = document.getElementById('formTravelers').value.trim();
       const notes = document.getElementById('formMessage').value.trim();
 
-      const isRu = currentLang === 'ru';
-
       let message = '';
-      if (isRu) {
-        message = `🌴 *Новая заявка на экскурсию (Калутара)* 🇱🇰\n\n` +
+      if (currentLang === 'ru') {
+        message = `🌴 *Новая заявка на экскурсию (Шри-Ланка)* 🇱🇰\n\n` +
           `👤 *Имя:* ${name}\n` +
-          `🏨 *Отель:* ${hotel || 'Не указан'}\n` +
+          `🏨 *Отель/Локация:* ${hotel || 'Не указан'}\n` +
           `🗺️ *Экскурсия:* ${tour}\n` +
           `🛺 *Транспорт:* ${vehicle}\n` +
           `📅 *Дата:* ${dates || 'Уточняется'}\n` +
           `👥 *Кол-во человек:* ${travelers || '2'}\n` +
           (notes ? `💬 *Пожелания:* ${notes}\n` : '') +
           `\nЗдравствуйте! Подскажите, пожалуйста, стоимость и свободные даты.`;
+      } else if (currentLang === 'fr') {
+        message = `🌴 *Nouvelle demande d'excursion (Sri Lanka)* 🇱🇰\n\n` +
+          `👤 *Nom:* ${name}\n` +
+          `🏨 *Hôtel/Lieu:* ${hotel || 'Non précisé'}\n` +
+          `🗺️ *Circuit:* ${tour}\n` +
+          `🛺 *Véhicule:* ${vehicle}\n` +
+          `📅 *Date(s):* ${dates || 'Flexible'}\n` +
+          `👥 *Voyageurs:* ${travelers || '2'}\n` +
+          (notes ? `💬 *Remarques:* ${notes}\n` : '') +
+          `\nBonjour ! Merci de m'indiquer la disponibilité et le tarif pour cette excursion.`;
+      } else if (currentLang === 'de') {
+        message = `🌴 *Neue Tour-Anfrage (Sri Lanka)* 🇱🇰\n\n` +
+          `👤 *Name:* ${name}\n` +
+          `🏨 *Hotel/Ort:* ${hotel || 'Nicht angegeben'}\n` +
+          `🗺️ *Tour:* ${tour}\n` +
+          `🛺 *Fahrzeug:* ${vehicle}\n` +
+          `📅 *Reisedatum:* ${dates || 'Flexibel'}\n` +
+          `👥 *Personen:* ${travelers || '2'}\n` +
+          (notes ? `💬 *Wünsche:* ${notes}\n` : '') +
+          `\nHallo! Bitte teilen Sie mir Verfügbarkeit und Preis für diese Tour mit.`;
       } else {
-        message = `🌴 *New Tour Inquiry (Kalutara)* 🇱🇰\n\n` +
+        message = `🌴 *New Tour Inquiry (Sri Lanka)* 🇱🇰\n\n` +
           `👤 *Name:* ${name}\n` +
           `🏨 *Hotel/Location:* ${hotel || 'Not specified'}\n` +
           `🗺️ *Tour:* ${tour}\n` +
