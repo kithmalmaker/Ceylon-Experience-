@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <defs>
+    <!-- Background Circle Radial Gradient: Tropical Sunrise / Ocean Dawn -->
+    <radialGradient id="sunOceanGlow" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFF3D6"/>
+      <stop offset="35%" stop-color="#FED7AA"/>
+      <stop offset="70%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </radialGradient>
+
+    <!-- Warm Golden Sun Gradient -->
+    <linearGradient id="warmSunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+
+    <!-- Ocean Wave Gradients -->
+    <linearGradient id="oceanWaveDeep" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0369A1"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="oceanWaveLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+
+    <!-- Tuk-Tuk Roof Gradient (Sunlit Amber Yellow) -->
+    <linearGradient id="tuktukRoofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="100%" stop-color="#EAB308"/>
+    </linearGradient>
+
+    <!-- Tuk-Tuk Body Gradient (Classic Ceylon Emerald Green) -->
+    <linearGradient id="tuktukBodyGrad" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#15803D"/>
+      <stop offset="100%" stop-color="#0F5132"/>
+    </linearGradient>
+
+    <!-- Palm Frond Lush Gradient -->
+    <linearGradient id="palmFrondGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#15803D"/>
+    </linearGradient>
+    
+    <!-- Gold Ring Stroke Gradient -->
+    <linearGradient id="goldBorderRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+
+    <!-- Soft Drop Shadow for Vehicle and Crest -->
+    <filter id="logoShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Base Crest Shield / Disc -->
+  <circle cx="60" cy="60" r="56" fill="url(#sunOceanGlow)" stroke="url(#goldBorderRing)" stroke-width="3.5" filter="url(#logoShadow)"/>
+
+  <!-- Golden Sun rising on horizon -->
+  <circle cx="60" cy="46" r="21" fill="url(#warmSunGrad)" opacity="0.95"/>
+  <!-- Sun Rays subtle halo ring -->
+  <circle cx="60" cy="46" r="25" fill="none" stroke="#FDE68A" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.8"/>
+
+  <!-- Ocean Waves (Front Layer) -->
+  <path d="M 6,70 Q 22,63 38,70 T 70,70 T 102,70 T 114,70 L 114,116 A 56,56 0 0,1 6,116 Z" fill="url(#oceanWaveLight)" opacity="0.45"/>
+  <path d="M 4,77 Q 24,70 44,77 T 84,77 T 116,77 L 116,116 A 56,56 0 0,1 4,116 Z" fill="url(#oceanWaveDeep)"/>
+
+  <!-- Palm Tree Arching from Left (Framing Sun & Road) -->
+  <!-- Trunk -->
+  <path d="M 16,92 Q 22,65 31,44" fill="none" stroke="#78350F" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 17,92 Q 23,65 32,44" fill="none" stroke="#B45309" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Palm Fronds -->
+  <g stroke-linecap="round" filter="url(#logoShadow)">
+    <path d="M 31,44 Q 44,38 52,43" fill="none" stroke="url(#palmFrondGrad)" stroke-width="3"/>
+    <path d="M 31,44 Q 42,32 46,24" fill="none" stroke="url(#palmFrondGrad)" stroke-width="3"/>
+    <path d="M 31,44 Q 28,28 20,22" fill="none" stroke="url(#palmFrondGrad)" stroke-width="2.8"/>
+    <path d="M 31,44 Q 18,34 10,40" fill="none" stroke="url(#palmFrondGrad)" stroke-width="2.8"/>
+    <path d="M 31,44 Q 18,48 12,56" fill="none" stroke="url(#palmFrondGrad)" stroke-width="2.5"/>
+    <!-- Palm Leaf Feathers Detail -->
+    <path d="M 38,40 Q 42,47 41,50" fill="none" stroke="#16A34A" stroke-width="1.5"/>
+    <path d="M 36,34 Q 42,36 43,39" fill="none" stroke="#16A34A" stroke-width="1.5"/>
+    <path d="M 27,33 Q 23,38 21,41" fill="none" stroke="#16A34A" stroke-width="1.5"/>
+  </g>
+
+  <!-- Modern Stylized Sri Lankan Tuk-Tuk (Iconic Front-Quarter Silhouette) -->
+  <g filter="url(#logoShadow)">
+    <!-- Wheel Shadows -->
+    <ellipse cx="53" cy="98" rx="8" ry="3.5" fill="#064E3B" opacity="0.6"/>
+    <ellipse cx="85" cy="98" rx="7" ry="3" fill="#064E3B" opacity="0.6"/>
+
+    <!-- Rear Wheel -->
+    <circle cx="85" cy="94" r="7" fill="#1E293B"/>
+    <circle cx="85" cy="94" r="3.5" fill="#94A3B8"/>
+    <circle cx="85" cy="94" r="1.5" fill="#0F172A"/>
+
+    <!-- Front Wheel -->
+    <circle cx="53" cy="94" r="7" fill="#1E293B"/>
+    <circle cx="53" cy="94" r="3.5" fill="#94A3B8"/>
+    <circle cx="53" cy="94" r="1.5" fill="#0F172A"/>
+
+    <!-- Tuk-Tuk Lower Body (Ceylon Emerald Green) -->
+    <path d="M 44,82 L 48,93 Q 49,95 52,95 L 89,95 Q 93,95 93,90 L 92,80 Q 92,77 88,77 L 53,77 Q 46,77 44,82 Z" fill="url(#tuktukBodyGrad)"/>
+    
+    <!-- Mudguard / Bumper Accent Trim (Golden Accent) -->
+    <path d="M 44,86 L 93,86 L 93,88.5 L 45,88.5 Z" fill="#F59E0B"/>
+
+    <!-- Headlight (Glowing White-Gold) -->
+    <circle cx="43.5" cy="83.5" r="3" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1"/>
+    <!-- Headlight beam glow -->
+    <path d="M 41,83 L 30,80 L 30,88 Z" fill="#FEF08A" opacity="0.4"/>
+
+    <!-- Cabin Opening / Interior -->
+    <path d="M 58,63 L 53,77 L 88,77 L 85,63 Z" fill="#0F172A" opacity="0.8"/>
+    
+    <!-- Front Windshield -->
+    <path d="M 49,63 L 57,63 L 54,76 L 46,76 Z" fill="#BAE6FD" opacity="0.85" stroke="#38BDF8" stroke-width="0.8"/>
+    <path d="M 48,65 L 53,65 L 51,73 L 47,73 Z" fill="#E0F2FE" opacity="0.6"/>
+
+    <!-- Passenger Open Window -->
+    <path d="M 60,64 L 84,64 L 82,76 L 56,76 Z" fill="#E0F2FE" opacity="0.35"/>
+
+    <!-- Slender A-pillar & Cabin support bars -->
+    <line x1="48" y1="63" x2="45" y2="77" stroke="#FEF08A" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="58" y1="63" x2="55" y2="77" stroke="#FEF08A" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="86" y1="63" x2="88" y2="77" stroke="#FEF08A" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- Curved Iconic Tuk-Tuk Roof (Amber Gold) -->
+    <path d="M 43,64 Q 45,59 55,59 L 83,59 Q 90,59 90,64 L 43,64 Z" fill="url(#tuktukRoofGrad)"/>
+    <!-- Roof highlight ridge -->
+    <path d="M 47,61 Q 55,60 82,60" fill="none" stroke="#FEF08A" stroke-width="1" stroke-linecap="round"/>
+  </g>
+
+  <!-- Joyful Flying Ocean Seabird (Freedom & Ocean Voyage) -->
+  <path d="M 76,33 Q 80,30 84,33 Q 88,30 92,33 Q 88,32 84,35 Q 80,32 76,33 Z" fill="#FFFFFF" opacity="0.95"/>
+  <path d="M 88,27 Q 91,25 94,27 Q 97,25 100,27 Q 97,26 94,28 Q 91,26 88,27 Z" fill="#FFFFFF" opacity="0.85"/>
+</svg>
