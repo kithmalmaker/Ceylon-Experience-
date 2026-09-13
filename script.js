@@ -95,6 +95,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.lang = lang;
     localStorage.setItem('ceylon_lang', lang);
     currentLang = lang;
+
+    // Update SEO Meta Tags Dynamically
+    if (data.seo) {
+      if (data.seo.metaTitle) document.title = data.seo.metaTitle;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc && data.seo.metaDescription) metaDesc.setAttribute('content', data.seo.metaDescription);
+      const metaKw = document.querySelector('meta[name="keywords"]');
+      if (metaKw && data.seo.metaKeywords) metaKw.setAttribute('content', data.seo.metaKeywords);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc && data.seo.metaDescription) ogDesc.setAttribute('content', data.seo.metaDescription);
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle && data.seo.metaTitle) ogTitle.setAttribute('content', data.seo.metaTitle);
+    }
   }
 
   // Language Switcher Event Listeners
@@ -191,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(greeting)}`;
-      window.open(url, '_blank');
+      window.open(url, '_blank', 'noopener,noreferrer');
     });
   });
 
@@ -200,15 +213,18 @@ document.addEventListener('DOMContentLoaded', () => {
     inquiryForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('formName').value.trim();
-      const hotel = document.getElementById('formHotel').value.trim();
+      // Sanitize inputs (strip control chars, trim, enforce length bounds)
+      const sanitize = (str, maxLen = 100) => (str || '').replace(/[\x00-\x1F\x7F]/g, '').trim().slice(0, maxLen);
+      const name = sanitize(document.getElementById('formName').value, 100);
+      const hotel = sanitize(document.getElementById('formHotel').value, 100);
       const tourSelect = document.getElementById('formTour');
-      const tour = tourSelect.options[tourSelect.selectedIndex].text || tourSelect.value;
+      const tour = sanitize(tourSelect.options[tourSelect.selectedIndex]?.text || tourSelect.value, 100);
       const vehicleSelect = document.getElementById('formVehicle');
-      const vehicle = vehicleSelect.options[vehicleSelect.selectedIndex].text || vehicleSelect.value;
-      const dates = document.getElementById('formDates').value.trim();
-      const travelers = document.getElementById('formTravelers').value.trim();
-      const notes = document.getElementById('formMessage').value.trim();
+      const vehicle = sanitize(vehicleSelect.options[vehicleSelect.selectedIndex]?.text || vehicleSelect.value, 100);
+      const dates = sanitize(document.getElementById('formDates').value, 50);
+      const travelersRaw = parseInt(document.getElementById('formTravelers').value, 10);
+      const travelers = isNaN(travelersRaw) || travelersRaw < 1 ? '2' : String(Math.min(travelersRaw, 25));
+      const notes = sanitize(document.getElementById('formMessage').value, 1000);
 
       let message = '';
       if (currentLang === 'ru') {
@@ -218,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
           `🗺️ *Экскурсия:* ${tour}\n` +
           `🛺 *Транспорт:* ${vehicle}\n` +
           `📅 *Дата:* ${dates || 'Уточняется'}\n` +
-          `👥 *Кол-во человек:* ${travelers || '2'}\n` +
+          `👥 *Кол-во человек:* ${travelers}\n` +
           (notes ? `💬 *Пожелания:* ${notes}\n` : '') +
           `\nЗдравствуйте! Подскажите, пожалуйста, стоимость и свободные даты.`;
       } else if (currentLang === 'fr') {
@@ -228,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
           `🗺️ *Circuit:* ${tour}\n` +
           `🛺 *Véhicule:* ${vehicle}\n` +
           `📅 *Date(s):* ${dates || 'Flexible'}\n` +
-          `👥 *Voyageurs:* ${travelers || '2'}\n` +
+          `👥 *Voyageurs:* ${travelers}\n` +
           (notes ? `💬 *Remarques:* ${notes}\n` : '') +
           `\nBonjour ! Merci de m'indiquer la disponibilité et le tarif pour cette excursion.`;
       } else if (currentLang === 'de') {
@@ -238,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
           `🗺️ *Tour:* ${tour}\n` +
           `🛺 *Fahrzeug:* ${vehicle}\n` +
           `📅 *Reisedatum:* ${dates || 'Flexibel'}\n` +
-          `👥 *Personen:* ${travelers || '2'}\n` +
+          `👥 *Personen:* ${travelers}\n` +
           (notes ? `💬 *Wünsche:* ${notes}\n` : '') +
           `\nHallo! Bitte teilen Sie mir Verfügbarkeit und Preis für diese Tour mit.`;
       } else {
@@ -248,13 +264,13 @@ document.addEventListener('DOMContentLoaded', () => {
           `🗺️ *Tour:* ${tour}\n` +
           `🛺 *Vehicle:* ${vehicle}\n` +
           `📅 *Dates:* ${dates || 'Flexible'}\n` +
-          `👥 *Travelers:* ${travelers || '2'}\n` +
+          `👥 *Travelers:* ${travelers}\n` +
           (notes ? `💬 *Notes:* ${notes}\n` : '') +
           `\nHello! Please let me know availability and pricing for this tour.`;
       }
 
       const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     });
   }
 

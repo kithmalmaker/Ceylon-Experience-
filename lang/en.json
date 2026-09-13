@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About Me",
+    "about": "About Us",
     "vehicles": "My Fleet",
     "tours": "Tour Packages",
     "gallery": "Gallery",
@@ -30,18 +30,24 @@
   },
   "about": {
     "badge": "Ayubowan & Welcome",
-    "title": "The Story Behind Ceylon Experience",
-    "p1": "I was born and raised right here in Kalutara — a coastal town where the golden river meets the deep blue ocean. For over 10 years, I have had the privilege of welcoming travelers from across the globe (UK, Russia, France, Germany, and beyond) and sharing with them the authentic beauty of Sri Lanka — from serene tropical beaches to ancient misty mountain kingdoms.",
-    "p2": "I created Ceylon Experience with one simple goal: to provide every guest with a safe, joyful, and stress-free journey. Whether it is a breezy Tuk-Tuk ride through village backroads or a multi-day island round tour in my comfortable A/C van to Sigiriya, Kandy, Ella, and Yala — I treat every traveler like family.",
-    "p3": "With fluent multilingual communication and local knowledge, I ensure seamless planning and care from your first message to your final airport drop-off. This is my passion and my home.",
-    "feat1_title": "Multilingual & Welcoming",
-    "feat1_desc": "Warm, clear communication in English, Russian, French & German assistance for all international guests.",
+    "title": "The Family Behind Ceylon Experience",
+    "p1": "We are a local father-and-son guiding team born and raised right here in Kalutara, where the golden river meets the Indian Ocean. With over 25+ combined years of tourism experience across Sri Lanka, we have welcomed thousands of international travelers from the UK, Russia, France, Germany, and beyond.",
+    "p2": "We created Ceylon Experience to treat every guest like our own family. Whether you are taking a breezy Tuk-Tuk ride through coastal villages or embarking on a multi-day island tour to Sigiriya, Kandy, Ella, and Yala in our comfortable private A/C van — we ensure your journey is safe, joyful, and unforgettable.",
+    "p3": "To give you the most comfortable holiday without language barriers, our tours are personally guided by our family: English & Russian travelers are hosted by our founder, while French & German guests are warmly guided by my father, our senior cultural specialist.",
+    "feat1_title": "Family Team & Multilingual",
+    "feat1_desc": "Personalized guidance in English, Russian, French & German with genuine local warmth.",
     "feat2_title": "Safety & Comfort First",
     "feat2_desc": "Defensive driving, daily cleaned vehicles, seatbelts, dual A/C, and attentive passenger care.",
     "feat3_title": "All-Island & Local Secrets",
     "feat3_desc": "From hidden beaches and local spice stalls to UNESCO ancient cities and wildlife national parks.",
     "feat4_title": "Fair & Honest Direct Pricing",
-    "feat4_desc": "Transparent local pricing with no travel agency markups, hidden fees, or pushy shopping stops."
+    "feat4_desc": "Transparent local pricing with no travel agency markups, hidden fees, or pushy shopping stops.",
+    "guide1_name": "Founder & Local Host",
+    "guide1_lang": "🇬🇧 English & 🇷🇺 Русский",
+    "guide1_desc": "10+ years local guiding. Dedicated to joyful coastal Tuk-Tuk rides, South Coast adventures, and custom private round tours.",
+    "guide2_name": "Senior Cultural Guide (Father)",
+    "guide2_lang": "🇫🇷 Français & 🇩🇪 Deutsch",
+    "guide2_desc": "Over 20+ years of tourism experience. Deep historical storytelling and warm hospitality for our French and German-speaking guests."
   },
   "fleet": {
     "badge": "Choose Your Ride",
@@ -237,5 +243,10 @@
     "contactInfo": "Contact Info",
     "copyright": "© 2026 Ceylon Experience — Kalutara, Sri Lanka. All rights reserved.",
     "slogan": "Made with ❤️ in Kalutara, Sri Lanka 🇱🇰"
+  },
+  "seo": {
+    "metaTitle": "Ceylon Experience | Sun, Sea & Authentic Sri Lanka Tours (English, Русский, Français & Deutsch)",
+    "metaDescription": "Ceylon Experience — Private Tuk-Tuk adventures, comfortable A/C Van tours, and customized round-island journeys across Sri Lanka. Multilingual assistance in English, Russian, French & German. Sigiriya, Kandy, Ella, Yala Safari, Galle Fort, and 24/7 Airport transfers.",
+    "metaKeywords": "ceylon experience tours, sri lanka tour driver, kalutara private driver, private van tour sri lanka, sigiriya tour, ella tour, kandy tour, udawalawe safari, galle fort tour, russian speaking guide sri lanka, french tour guide sri lanka, german tour sri lanka"
   }
 }

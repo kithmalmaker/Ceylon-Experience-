@@ -1,0 +1,8 @@
+# robots.txt for Ceylon Experience
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /lang/
+
+# Sitemaps
+Sitemap: https://ceylonexperience.com/sitemap.xml

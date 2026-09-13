@@ -59,6 +59,9 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-height) + 16px);
   -webkit-text-size-adjust: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -67,7 +70,10 @@ body {
   line-height: 1.65;
   color: var(--text-main);
   background-color: var(--bg-sand);
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1522,6 +1528,60 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+  /* Prevent horizontal scroll & header stretch */
+  .site-header {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .nav-wrap {
+    width: 100%;
+    gap: 8px;
+    padding-inline: 0;
+  }
+
+  .brand-logo {
+    gap: 10px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .brand-icon-img {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .brand-name {
+    font-size: 1.15rem;
+    white-space: nowrap;
+  }
+
+  .brand-tag {
+    font-size: 0.62rem;
+    white-space: nowrap;
+  }
+
+  .nav-actions {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .lang-toggle-group {
+    padding: 2px;
+    gap: 1px;
+  }
+
+  .lang-btn {
+    padding: 4px 7px;
+    font-size: 0.74rem;
+    gap: 3px;
+  }
+
+  .lang-flag {
+    font-size: 0.9rem;
+  }
+
   .nav-links, .nav-actions .btn {
     display: none;
   }
@@ -1542,6 +1602,7 @@ textarea.form-control {
     box-shadow: var(--shadow-md);
     gap: 16px;
     border-top: 1px solid var(--border);
+    z-index: 1000;
   }
   
   .stats-grid {
@@ -1581,11 +1642,9 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
   
+  /* Hide floating button on mobile because bottom action bar handles WhatsApp/Calls */
   .floating-whatsapp {
-    bottom: 74px;
-    right: 16px;
-    padding: 10px 16px 10px 12px;
-    font-size: 0.88rem;
+    display: none !important;
   }
   
   .fleet-img-wrap {
@@ -1608,6 +1667,231 @@ textarea.form-control {
   }
   
   body {
-    padding-bottom: 60px;
+    padding-bottom: 64px;
+  }
+}
+
+/* Twin Guides Showcase */
+.guides-team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-block: 22px 26px;
+}
+
+.guide-profile-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  box-shadow: 0 4px 12px rgba(15, 81, 50, 0.05);
+  transition: all 0.3s ease;
+}
+
+.guide-profile-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 20px rgba(15, 81, 50, 0.1);
+}
+
+.guide-avatar-wrap {
+  width: 68px;
+  height: 68px;
+  min-width: 68px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2.5px solid var(--primary);
+  box-shadow: 0 4px 10px rgba(15, 81, 50, 0.15);
+  background: #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.guide-avatar-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  transition: transform 0.3s ease;
+}
+
+.guide-profile-card:hover .guide-avatar-photo {
+  transform: scale(1.08);
+}
+
+.father-photo-slot {
+  object-position: center;
+  background: #082A1B;
+}
+
+.guide-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.guide-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  line-height: 1.2;
+}
+
+.guide-lang-pill {
+  display: inline-block;
+  background: rgba(15, 81, 50, 0.08);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  width: fit-content;
+  margin-block: 2px 4px;
+}
+
+.guide-bio {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .guides-team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: clamp(1.85rem, 7.5vw, 2.35rem);
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+
+  .hero-cta-wrap {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .hero-cta-wrap .btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+
+  .hero-trust-badges {
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 18px;
+  }
+
+  .trust-item {
+    font-size: 0.88rem;
+  }
+
+  .badge-pill {
+    font-size: 0.76rem;
+    padding: 5px 12px;
+    max-width: 100%;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .section {
+    padding-block: clamp(38px, 7vw, 60px);
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .contact-info-card,
+  .contact-form-wrap {
+    padding: 20px 16px;
+  }
+
+  .form-control {
+    font-size: 16px; /* Prevents auto-zoom in mobile Safari */
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-icon-img {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+
+  .brand-name {
+    font-size: 1.02rem;
+  }
+
+  .brand-tag {
+    display: none; /* Prevents horizontal overflow on phones */
+  }
+
+  .lang-btn {
+    padding: 3px 5px;
+    font-size: 0.68rem;
+    gap: 2px;
+  }
+
+  .lang-flag {
+    font-size: 0.82rem;
+  }
+
+  .nav-hamburger {
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    width: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 8px;
+  }
+
+  .stat-item h3 {
+    font-size: 1.5rem;
+  }
+
+  .stat-item p {
+    font-size: 0.76rem;
+  }
+
+  .tour-filters {
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .filter-btn {
+    padding: 7px 12px;
+    font-size: 0.8rem;
+  }
+
+  .guide-profile-card {
+    padding: 14px 14px;
+    gap: 12px;
+  }
+
+  .guide-avatar-wrap {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
   }
 }
